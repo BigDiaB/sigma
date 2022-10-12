@@ -29,10 +29,15 @@ void enigma_init(uchar r1, uchar r2, uchar r3, uchar o1, uchar o2, uchar o3)
 	rotor_offsets[0] = o1;
 	rotor_offsets[1] = o2;
 	rotor_offsets[2] = o3;
+
+	plugs_used = 0;
 }
 
 void set_plug(char A, char B)
 {
+	if (plugs_used >= 9)
+		return;
+
 	plugs_used++;
     plugs[plugs_used -1][0] = A;
     plugs[plugs_used -1][1] = B;
@@ -121,16 +126,6 @@ static uchar check_plugs(uchar input)
     return input;
 }
 
-void clear_plugs()
-{
-	plugs_used = 0;
-}
-
-void pop_plug()
-{
-	plugs_used--;
-}
-
 uchar enigma(uchar input, uchar print)
 {
 
@@ -160,7 +155,7 @@ uchar enigma(uchar input, uchar print)
 
     input = rotatec(input);
     if (print)
-    	printf("Reflector:\t\t %c (%d)\n",itc(input), input);
+    	printf("Reflector:\t %c (%d)\n",itc(input), input);
 
     input = rotateb(input, 3);
     if (print)
@@ -182,7 +177,7 @@ uchar enigma(uchar input, uchar print)
     	printf("Offsets:\t %d %d %d\n",rotor_offsets[0],rotor_offsets[1],rotor_offsets[2]);
 
     if (print)
-    	printf("Output:\t\t %c (%d)\n\n",itc(input),input);
+    	printf("Output:\t\t %c (%d)\n",itc(input),input);
 
     increment_rotor_offset();
 
