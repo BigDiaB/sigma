@@ -10,9 +10,9 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char* argv[])
     unsigned int i, len, debug;
     char* str, *code;
 
-    debug = 1;
+    debug = 0;
 
-    str = "TEST";
+    str = "GUTEN MORGEN";
     code = malloc((len = strlen(str)) + 1);
     memset(code,0,len +1);
 
@@ -26,7 +26,6 @@ int main(__attribute__((unused))int argc, __attribute__((unused))char* argv[])
 
     for (i = 0; i < len; i++)
         printf("%c%c",enigma(code[i],debug), i == len -1 || debug  ? 10 : 0);
-
 
     free(code);
 
