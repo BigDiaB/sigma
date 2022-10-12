@@ -1,0 +1,12 @@
+out: Horst-Projekt
+gxx: clang
+gxxflags:
+cxxflags: -W -Wall -Wextra
+source: ../src/main.c ../src/enigma.c
+includes: -I../libs/include
+lib_path: -L../libs/lib
+libraries:
+debugger: none
+dependencies:
+d_types:
+defines:
